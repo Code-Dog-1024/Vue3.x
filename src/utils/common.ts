@@ -1,4 +1,4 @@
-import { Dictionary, Foo } from "@/@types/basic.d";
+import { Foo } from "@/@types/basic.d";
 
 /**
  * 数字添加分隔符并保留两位小数
@@ -53,11 +53,11 @@ interface DebounceReturn {
  *
  * @param {number} timeout 定时器时延
  * @param {Foo} callback 定时器回调
- * @returns {DebounceReturn}
+ * @returns {DebounceReturn} 定时器指针
  */
 export const debounce = (timeout: number, callback: Foo): DebounceReturn => {
   let timer = 0;
-  return (...arg: []) => {
+  return (...arg) => {
     if (timer) clearTimeout(timer);
     timer = setTimeout(callback, timeout, arg);
     return timer;
@@ -82,7 +82,7 @@ export const throttle = (timeout: number, callback: Foo): ThrottleReturn => {
     clearTimeout(timer);
     timer = 0;
   };
-  return (...arg: []) => {
+  return (...arg) => {
     if (isFirst) {
       isFirst = false;
       callback(...arg);

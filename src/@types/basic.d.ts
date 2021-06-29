@@ -1,5 +1,6 @@
+/*eslint @typescript-eslint/no-explicit-any: ["off"]*/
 export interface Dictionary<T = any> {
-  [k: string]: T;
+  [key: string]: T;
 }
 
 export type Foo = () => void;

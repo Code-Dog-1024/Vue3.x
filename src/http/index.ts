@@ -1,3 +1,5 @@
+/*eslint @typescript-eslint/no-explicit-any: ["off"]*/
+
 import axios, {
   AxiosInstance,
   AxiosRequestConfig,
