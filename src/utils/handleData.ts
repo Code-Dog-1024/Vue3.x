@@ -56,7 +56,7 @@ export const isObject = (obj: unknown): boolean => {
  * @param {*} source 任意类型数据
  * @returns {*} source的副本
  */
-export const clone = <T = any>(source: T): T => {
+export const clone = <T>(source: T): T => {
   let target: any;
   if (typeof source === "object") {
     target = isArray(source) ? [] : {};
@@ -68,6 +68,30 @@ export const clone = <T = any>(source: T): T => {
     }
   } else {
     target = source;
+  }
+  return target;
+};
+
+/**
+ * 对象合并
+ *
+ * @param {boolean} isDeep 是否深层合并
+ * @param {Dictionary} target 目标对象
+ * @param {Dictionary[]} sources 一个或多个合并对象
+ * @returns 目标对象
+ */
+export const assign = (
+  isDeep: boolean,
+  target: Dictionary,
+  ...sources: Dictionary[]
+): Dictionary => {
+  if (!isDeep) return Object.assign(target, ...sources);
+  for (let i = 0; i < sources.length; i++) {
+    const source = sources[i];
+    for (const key in source) {
+      if (target === source[key]) continue;
+      target[key] = clone(source[key]);
+    }
   }
   return target;
 };
