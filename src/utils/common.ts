@@ -59,7 +59,7 @@ export const debounce = (timeout: number, callback: Foo): DebounceReturn => {
   let timer = 0;
   return (...arg) => {
     if (timer) clearTimeout(timer);
-    timer = setTimeout(callback, timeout, arg);
+    timer = window.setTimeout(callback, timeout, arg);
     return timer;
   };
 };
@@ -89,7 +89,7 @@ export const throttle = (timeout: number, callback: Foo): ThrottleReturn => {
       return clearFun;
     }
     if (timer) return clearFun;
-    timer = setTimeout(() => {
+    timer = window.setTimeout(() => {
       timer = 0;
       callback(...arg);
     }, timeout);

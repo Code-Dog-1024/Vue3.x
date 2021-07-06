@@ -7,6 +7,8 @@ import axios, {
   AxiosError,
 } from "axios";
 
+import { ElMessage as message } from "element-plus";
+
 export class Http {
   private axios: AxiosInstance;
 
@@ -28,14 +30,19 @@ export class Http {
   }
 
   private handleRequestError(error: any): any {
-    console.log(error);
+    message({ message: "请求失败！", type: "error" });
     return error;
   }
 
   private handleResponseSuccess(res: AxiosResponse): Promise<AxiosResponse> {
     return new Promise((resolve, reject) => {
       const { errcode, errmsg } = res.data;
-      if (errcode !== "0000" && errmsg) reject(res.data);
+      if (errcode !== "0000") {
+        message({ message: errmsg || "请求失败！", type: "error" });
+        reject(res.data);
+        return;
+      }
+      message({ message: "请求成功！", type: "success" });
       resolve(res.data);
     });
   }

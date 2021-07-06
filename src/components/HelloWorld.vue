@@ -1,13 +1,14 @@
 <template>
   <div>
     <div>{{ num }}</div>
-    <button @click="onClick">点我改名</button>
+    <el-button @click="onClick">点我改名</el-button>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import { useUtils } from "@/hooks";
+import { ElButton } from "element-plus";
 
 export default defineComponent({
   name: "HelloWorld",
@@ -16,6 +17,9 @@ export default defineComponent({
       type: String,
       required: true,
     },
+  },
+  components: {
+    ElButton,
   },
   emits: ["update:modelValue"],
   setup() {
