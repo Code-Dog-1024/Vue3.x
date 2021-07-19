@@ -4,17 +4,18 @@ import { Foo } from "@/@types/basic.d";
  * 数字添加分隔符并保留两位小数
  *
  * @param {number | string} value 数字或字符串格式数字
+ * @param {number} tofix 保留小数位数
  * @template
  * ```js
  * formatNumber(1000) => 1,000.00
  * ```
  * @returns `string`
  */
-export const formatNumber = (value: number | string): string => {
+export const formatNumber = (value: number | string, tofix: number): string => {
   value = parseFloat(String(value));
   const arr = String(value).split(".");
   const intPartArr = arr[0].split("").reverse();
-  const floatPartArr = arr[1] ? arr[1].split("") : [];
+  const floatPart = arr[1] || "";
 
   if (intPartArr.length > 3) {
     const commaNum = Math.floor(intPartArr.length / 3);
@@ -28,20 +29,11 @@ export const formatNumber = (value: number | string): string => {
   }
   const intPart = intPartArr.join("");
 
-  let floatPart;
-  switch (floatPartArr.length) {
-    case 0:
-      floatPart = "00";
-      break;
-    case 1:
-      floatPart = `${floatPartArr[0]}0`;
-      break;
-    default:
-      floatPart = `${floatPartArr[0]}${floatPartArr[1]}`;
-      break;
+  if (floatPart) {
+    return Number(intPart + "." + floatPart).toFixed(tofix);
   }
 
-  return `${intPart}.${floatPart}`;
+  return Number(intPart).toFixed(tofix);
 };
 
 interface DebounceReturn {
