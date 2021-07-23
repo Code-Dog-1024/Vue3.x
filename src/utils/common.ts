@@ -4,14 +4,14 @@ import { Foo } from "@/@types/basic.d";
  * 数字添加分隔符并保留两位小数
  *
  * @param {number | string} value 数字或字符串格式数字
- * @param {number} tofix 保留小数位数
+ * @param {number} tofix 保留小数位数(默认两位)
  * @template
  * ```js
  * formatNumber(1000) => 1,000.00
  * ```
  * @returns `string`
  */
-export const formatNumber = (value: number | string, tofix: number): string => {
+export const formatNumber = (value: number | string, tofix = 2): string => {
   value = parseFloat(String(value));
   const arr = String(value).split(".");
   const intPartArr = arr[0].split("").reverse();
