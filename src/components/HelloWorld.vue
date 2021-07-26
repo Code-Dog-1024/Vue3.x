@@ -1,5 +1,9 @@
 <template>
   <div>
+    <div>
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link>
+    </div>
     <div>{{ num }}</div>
     <el-button @click="onClick">点我改名</el-button>
   </div>

@@ -14,7 +14,6 @@ export default defineComponent({
 
 <style rel="stylesheet/scss" lang="scss">
 .aside {
-  width: $asideOnWidth;
   height: 100%;
   min-height: 100%;
 }

@@ -1,8 +1,14 @@
 <template>
   <div class="app-wrapper">
-    <app-aside class="app-wrapper_aside"></app-aside>
-    <div class="app-wrapper_main">
-      <app-header></app-header>
+    <app-aside
+      class="app-wrapper-aside"
+      :class="isFold ? 'app-wrapper-aside--off' : 'app-wrapper-aside--on'"
+    ></app-aside>
+    <div
+      class="app-wrapper-main"
+      :class="isFold ? 'app-wrapper-main--off' : 'app-wrapper-main--on'"
+    >
+      <app-header v-model:isAsideFold="isFold"></app-header>
       <router-view></router-view>
       <app-footer></app-footer>
     </div>
@@ -10,7 +16,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import AppHeader from "./components/header.vue";
 import AppAside from "./components/aside.vue";
 import AppFooter from "./components/footer.vue";
@@ -22,6 +28,13 @@ export default defineComponent({
     AppAside,
     AppFooter,
   },
+  setup() {
+    const isFold = ref(false);
+
+    return {
+      isFold,
+    };
+  },
 });
 </script>
 
@@ -32,18 +45,33 @@ export default defineComponent({
   overflow-y: scroll;
   position: relative;
 
-  &_aside {
+  &-aside {
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
+
+    &--on {
+      width: $asideOnWidth;
+    }
+
+    &--off {
+      width: $asideOffWidth;
+    }
   }
 
-  &_main {
+  &-main {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    margin-left: $asideOnWidth;
+
+    &--on {
+      margin-left: $asideOnWidth;
+    }
+
+    &--off {
+      margin-left: $asideOffWidth;
+    }
   }
 }
 </style>

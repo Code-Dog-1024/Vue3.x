@@ -1,8 +1,4 @@
 <template>
-  <div>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
   <layout></layout>
 </template>
 
@@ -16,5 +12,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style lang="scss"></style>
