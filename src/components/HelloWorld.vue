@@ -1,10 +1,10 @@
 <template>
-  <div>
-    <div>
+  <div class="flex">
+    <div class="flex-2">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div>
-    <div>{{ num }}</div>
+    <div class="flex-2">{{ num }}</div>
     <el-button @click="onClick">点我改名</el-button>
   </div>
 </template>

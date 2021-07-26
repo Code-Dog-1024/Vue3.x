@@ -1,0 +1,48 @@
+.flex {
+  display: flex;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+@for $i from 2 to 5 {
+  .flex-#{$i} {
+    width: (100% / $i);
+  }
+}
+
+.flex-wrap {
+  @extend .flex;
+  flex-wrap: wrap;
+}
+
+.flex-column {
+  @extend .flex;
+  flex-direction: column;
+}
+
+.flex-jsa {
+  @extend .flex;
+  justify-content: space-around;
+}
+
+.flex-jsb {
+  @extend .flex;
+  justify-content: space-between;
+}
+
+.flex-jc {
+  @extend .flex;
+  align-content: center;
+}
+
+.flex-ac {
+  @extend .flex;
+  justify-content: center;
+}
+
+.flex-jc-ac {
+  @extend .flex-jc;
+  @extend .flex-ac;
+}

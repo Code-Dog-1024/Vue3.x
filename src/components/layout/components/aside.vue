@@ -12,7 +12,7 @@ export default defineComponent({
 });
 </script>
 
-<style rel="stylesheet/scss" lang="scss">
+<style lang="scss" scoped>
 .aside {
   height: 100%;
   min-height: 100%;

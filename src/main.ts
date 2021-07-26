@@ -6,6 +6,7 @@ import element from "element-plus";
 import utils from "./utils";
 
 import "element-plus/lib/theme-chalk/index.css";
+import "@/stylesheets/index.scss";
 
 const vm = createApp(App);
 
