@@ -1,5 +1,5 @@
 <template>
-  <div class="home">This is home page.</div>
+  <div class="home text-ellipsis" style="width: 20px">This is home page.</div>
   <h2>{{ name }}</h2>
   <hello-world v-model="name"></hello-world>
 </template>

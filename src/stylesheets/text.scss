@@ -1,0 +1,40 @@
+@import "./color.scss";
+
+.text-primary {
+  color: $--color-primary;
+}
+
+.text-success {
+  color: $--color-success;
+}
+
+.text-warning {
+  color: $--color-warning;
+}
+
+.text-danger {
+  color: $--color-danger;
+}
+
+.text-info {
+  color: $--color-info;
+}
+
+@each $align in right, center {
+  .text-#{$align} {
+    text-align: $align;
+  }
+}
+
+.text-nowrap {
+  white-space: nowrap;
+  word-wrap: normal;
+  word-break: keep-all;
+}
+
+.text-ellipsis {
+  // @extend .text-nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
