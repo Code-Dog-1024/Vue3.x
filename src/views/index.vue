@@ -1,20 +1,17 @@
 <template>
-  <div class="aside">
-    <h2>Aside</h2>
-  </div>
+  <div class="home">首页</div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "app-aside",
+  name: "home",
 });
 </script>
-
 <style lang="scss" scoped>
-.aside {
-  height: 100%;
-  min-height: 100%;
+.home {
+  padding: 10px;
+  flex: 1;
 }
 </style>
