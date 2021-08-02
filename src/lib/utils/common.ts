@@ -15,7 +15,7 @@ export const formatNumber = (value: number | string, tofix = 2): string => {
   value = parseFloat(String(value));
   const arr = String(value).split(".");
   const intPartArr = arr[0].split("").reverse();
-  const floatPart = arr[1] || "";
+  let floatPart = arr[1] || "";
 
   if (intPartArr.length > 3) {
     const commaNum = Math.floor(intPartArr.length / 3);
@@ -30,10 +30,14 @@ export const formatNumber = (value: number | string, tofix = 2): string => {
   const intPart = intPartArr.join("");
 
   if (floatPart) {
-    return Number(intPart + "." + floatPart).toFixed(tofix);
+    floatPart = Number("0." + floatPart)
+      .toFixed(tofix)
+      .split(".")[1];
+  } else {
+    floatPart = (0).toFixed(tofix).split(".")[1];
   }
 
-  return Number(intPart).toFixed(tofix);
+  return `${intPart}.${floatPart}`;
 };
 
 interface DebounceReturn {

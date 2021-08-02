@@ -2,8 +2,24 @@
   .m-#{$i * 5} {
     margin: $i * 5px;
   }
+  .mv-#{$i * 5} {
+    margin-top: $i * 5px;
+    margin-bottom: $i * 5px;
+  }
+  .mh-#{$i * 5} {
+    margin-left: $i * 5px;
+    margin-right: $i * 5px;
+  }
   .p-#{$i * 5} {
     padding: $i * 5px;
+  }
+  .pv-#{$i * 5} {
+    padding-top: $i * 5px;
+    padding-bottom: $i * 5px;
+  }
+  .ph-#{$i * 5} {
+    padding-left: $i * 5px;
+    padding-right: $i * 5px;
   }
 }
 

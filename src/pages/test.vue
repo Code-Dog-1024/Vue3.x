@@ -1,42 +1,27 @@
 <template>
   <div class="flex">
-    <div class="flex-2">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
     <div class="flex-2">{{ num }}</div>
-    <el-button @click="onClick">点我改名</el-button>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import { useUtils } from "@/hooks";
-import { ElButton } from "element-plus";
 
 export default defineComponent({
-  name: "HelloWorld",
+  name: "test",
   props: {
     name: {
       type: String,
       required: true,
     },
   },
-  components: {
-    ElButton,
-  },
-  emits: ["update:modelValue"],
   setup() {
     const num = ref("1123");
     num.value = useUtils().formatNumber(num.value);
     return {
       num,
     };
-  },
-  methods: {
-    onClick() {
-      this.$emit("update:modelValue", "李四");
-    },
   },
 });
 </script>

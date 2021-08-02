@@ -1,5 +1,9 @@
 @import "./color.scss";
 
+.text-white {
+  color: $--color-white;
+}
+
 .text-primary {
   color: $--color-primary;
 }

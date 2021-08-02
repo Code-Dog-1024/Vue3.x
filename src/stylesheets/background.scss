@@ -1,0 +1,21 @@
+@import "./color.scss";
+
+.bg-primary {
+  background-color: $--color-primary;
+}
+
+.bg-success {
+  background-color: $--color-success;
+}
+
+.bg-warning {
+  background-color: $--color-warning;
+}
+
+.bg-danger {
+  background-color: $--color-danger;
+}
+
+.bg-info {
+  background-color: $--color-info;
+}

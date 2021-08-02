@@ -3,6 +3,7 @@
     <app-aside
       class="app-wrapper-aside"
       :class="isFold ? 'app-wrapper-aside--off' : 'app-wrapper-aside--on'"
+      :isFold="isFold"
     ></app-aside>
     <div
       class="app-wrapper-main"
@@ -53,10 +54,12 @@ export default defineComponent({
 
     &--on {
       width: $asideOnWidth;
+      transition: margin-left 0.3s;
     }
 
     &--off {
       width: $asideOffWidth;
+      transition: margin-left 0.3s;
     }
   }
 

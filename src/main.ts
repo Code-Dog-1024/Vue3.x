@@ -8,6 +8,9 @@ import element from "element-plus";
 import "element-plus/lib/theme-chalk/index.css";
 import "@/stylesheets/index.scss";
 
+window.router = router;
+window.store = store;
+
 const vm = createApp(App);
 
 vm.use(lib).use(store).use(router).use(element).mount("#app");

@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <div class="app-header">
     <el-button type="primary" @click="changeFoldStatus">
       {{ isAsideFold ? "点我展开aside" : "点我折叠aside" }}
     </el-button>
@@ -30,4 +30,8 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.app-header {
+  height: $logoHeight;
+}
+</style>

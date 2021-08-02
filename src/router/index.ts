@@ -12,6 +12,11 @@ const routes: Array<RouteRecordRaw> = [
         name: "首页",
         component: import(/* webpackChunkName: "home" */ "@/views/index.vue"),
       },
+      {
+        path: "/test",
+        name: "测试页",
+        component: import(/* webpackChunkName: "test" */ "@/pages/test.vue"),
+      },
     ],
   },
 ];

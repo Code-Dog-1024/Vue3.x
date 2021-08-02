@@ -34,12 +34,12 @@
 
 .flex-jc {
   @extend .flex;
-  align-content: center;
+  justify-content: center;
 }
 
 .flex-ac {
   @extend .flex;
-  justify-content: center;
+  align-items: center;
 }
 
 .flex-jc-ac {
