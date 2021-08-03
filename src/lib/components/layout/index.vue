@@ -19,7 +19,7 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import AppHeader from "./components/header.vue";
-import AppAside from "./components/aside.vue";
+import AppAside from "./components/aside/index.vue";
 import AppFooter from "./components/footer.vue";
 
 export default defineComponent({
@@ -70,10 +70,12 @@ export default defineComponent({
 
     &--on {
       margin-left: $asideOnWidth;
+      transition: margin-left 0.3s;
     }
 
     &--off {
       margin-left: $asideOffWidth;
+      transition: margin-left 0.3s;
     }
   }
 }

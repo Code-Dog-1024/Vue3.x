@@ -1,5 +1,5 @@
 <template>
-  <div class="app-header">
+  <div class="app-header flex-ac bg-primary">
     <el-button type="primary" @click="changeFoldStatus">
       {{ isAsideFold ? "点我展开aside" : "点我折叠aside" }}
     </el-button>
@@ -8,6 +8,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { mapGetters } from "vuex";
 
 export default defineComponent({
   name: "app-header",
@@ -22,6 +23,9 @@ export default defineComponent({
     const changeFoldStatus = () => {
       emit("update:isAsideFold", !props.isAsideFold);
     };
+
+    const modules = mapGetters(["modules"]);
+    console.log(modules);
 
     return {
       changeFoldStatus,

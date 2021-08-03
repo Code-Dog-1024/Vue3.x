@@ -1,5 +1,5 @@
-import utils from "@/utils";
-import { Http } from "@/http";
+import utils from "../utils";
+import { Http } from "../axios";
 
 export type Utils = typeof utils;
 

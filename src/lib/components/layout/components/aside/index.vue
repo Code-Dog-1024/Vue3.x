@@ -1,6 +1,6 @@
 <template>
   <div class="app-aside" :class="isFold ? 'app-aside--off' : 'app-aside--on'">
-    <router-link to="/" class="text-white">
+    <router-link to="/" class="app-aside-link text-white">
       <transition name="el-zoom-in-center">
         <div class="app-aside-logo bg-primary" v-show="isFold">
           <img class="app-aside-logo-img" :src="logo" alt="logo" />
@@ -9,8 +9,8 @@
       <transition name="el-zoom-in-center">
         <div v-show="!isFold" class="app-aside-logo flex bg-primary">
           <img class="app-aside-logo-img" :src="logo" alt="logo" />
-          <span class="flex-1 flex-jc-ac" v-show="!isFold">
-            {{ "公司名称" }}
+          <span class="flex-1 flex-jc-ac font-20" v-show="!isFold">
+            {{ companyName }}
           </span>
         </div>
       </transition>
@@ -20,7 +20,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from "vue";
+import { defineComponent } from "vue";
+import { useLogoConfig } from "./hooks";
 
 export default defineComponent({
   name: "app-aside",
@@ -31,14 +32,11 @@ export default defineComponent({
     },
   },
   setup() {
-    const logo = computed(() => {
-      // eslint-disable-next-line @typescript-eslint/no-var-requires
-      const img = require("../../../../assert/images/logo.jpg");
-      return img;
-    });
+    const { logo, companyName } = useLogoConfig();
 
     return {
       logo,
+      companyName,
     };
   },
 });
@@ -57,11 +55,19 @@ export default defineComponent({
     width: $asideOffWidth;
   }
 
-  &-logo {
+  &-link {
+    display: inline-block;
+    width: 100%;
     height: $logoHeight;
+    overflow: hidden;
+  }
+
+  &-logo {
+    display: flex;
+    align-items: center;
 
     &-img {
-      height: 100%;
+      height: $logoHeight;
     }
   }
 }

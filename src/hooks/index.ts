@@ -1,6 +1,6 @@
 import { ComponentInternalInstance, getCurrentInstance } from "vue";
-import { Utils } from "@/@types/custom-vue";
-import { Http } from "@/http";
+import { Utils } from "@/lib/@types/custom-vue";
+import { Http } from "@/lib/axios";
 
 export function useUtils(): Utils {
   const { appContext } = getCurrentInstance() as ComponentInternalInstance;
