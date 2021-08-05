@@ -8,7 +8,7 @@ export function useLogoConfig(): {
 } {
   const logo = computed(() => {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const img = require("@/assert/images/logo.jpg");
+    const img = require("@/assets/images/logo.jpg");
     return img;
   });
 
