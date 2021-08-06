@@ -1,3 +1,4 @@
+import { Dictionary } from "@/@types/basic";
 import axios, {
   AxiosInstance,
   AxiosRequestConfig,
@@ -6,6 +7,12 @@ import axios, {
 } from "axios";
 
 import { ElMessage as message } from "element-plus";
+
+interface _ResponeseData {
+  data: Dictionary;
+  errcode: string;
+  errmsg: string;
+}
 
 export class Http {
   private axios: AxiosInstance;
@@ -34,14 +41,14 @@ export class Http {
 
   private handleResponseSuccess(res: AxiosResponse): Promise<AxiosResponse> {
     return new Promise((resolve, reject) => {
-      const { errcode, errmsg } = res.data;
+      const { errcode, errmsg } = res.data as _ResponeseData;
       if (errcode !== "0000") {
         message({ message: errmsg || "请求失败！", type: "error" });
-        reject(res.data);
+        reject(res);
         return;
       }
       message({ message: "请求成功！", type: "success" });
-      resolve(res.data);
+      resolve(res);
     });
   }
 
@@ -66,14 +73,12 @@ export class Http {
     this.useInterceptors();
   }
 
-  public get(url: string, params = {}, config = {}): Promise<AxiosResponse> {
+  public get(url: string, params = {}, config = {}): Promise<_ResponeseData> {
     return new Promise((resolve, reject) => {
       this.axios
         .get(url, { params, ...config })
         .then((res) => {
-          // Do Something...
-          // For Example: appointment a custom error-code
-          resolve(res);
+          resolve(res.data);
         })
         .catch((error: AxiosError) => {
           reject(error);
@@ -81,14 +86,12 @@ export class Http {
     });
   }
 
-  public post(url: string, params = {}, config = {}): Promise<AxiosResponse> {
+  public post(url: string, params = {}, config = {}): Promise<_ResponeseData> {
     return new Promise((resolve, reject) => {
       this.axios
         .post(url, { ...params }, { ...config })
         .then((res) => {
-          // Do Something...
-          // For Example: appointment a custom error-code
-          resolve(res);
+          resolve(res.data);
         })
         .catch((error: AxiosError) => {
           reject(error);

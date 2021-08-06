@@ -1,3 +1,10 @@
+import { ActionContext } from "vuex";
+import { useHttp, useApi } from "@/hooks";
+import { ListResponeseJson } from "@/@types/basic.d";
+
+const $http = useHttp();
+const $api = useApi();
+
 interface Module {
   /** 模块标识 */
   id: string;
@@ -36,7 +43,27 @@ export default {
       state.menus = menus;
     },
   },
-  action: {},
+  action: {
+    /** 获取用户可访问模块列表 */
+    GET_USER_MODULES(context: ActionContext<State, any>): Promise<void> {
+      return new Promise((resolve, reject) => {
+        try {
+          $http.post($api.common.modules).then((res) => {
+            const { data } = res;
+            const { content } = data as ListResponeseJson;
+            if (content.length) {
+              context.commit("SET_USER_MODULES", content);
+              resolve();
+            } else {
+              reject();
+            }
+          });
+        } catch (error) {
+          reject(error);
+        }
+      });
+    },
+  },
   getter: {
     modules(state: State): Module[] {
       return state.modules;
