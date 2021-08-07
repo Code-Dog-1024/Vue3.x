@@ -5,10 +5,10 @@ export interface Dictionary<T = any> {
 export type Foo = () => void;
 
 /** 列表接口返回数据格式约定 */
-export interface ListResponeseJson {
+export interface ListResponeseData<T> {
   isFirst: boolean;
   isLastest: boolean;
   currentPage: number;
   totalRecords: number;
-  content: Dictionary[];
+  content: T[];
 }

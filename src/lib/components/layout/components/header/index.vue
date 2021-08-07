@@ -8,7 +8,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { mapGetters } from "vuex";
+import { userModules } from "./hooks";
 
 export default defineComponent({
   name: "app-header",
@@ -24,11 +24,13 @@ export default defineComponent({
       emit("update:isAsideFold", !props.isAsideFold);
     };
 
-    const modules = mapGetters(["modules"]);
-    console.log(modules);
+    const { modules, activeId, onActiveModuleChange } = userModules();
 
     return {
       changeFoldStatus,
+      modules,
+      activeId,
+      onActiveModuleChange,
     };
   },
 });

@@ -18,7 +18,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import AppHeader from "./components/header.vue";
+import AppHeader from "./components/header/index.vue";
 import AppAside from "./components/aside/index.vue";
 import AppFooter from "./components/footer.vue";
 
