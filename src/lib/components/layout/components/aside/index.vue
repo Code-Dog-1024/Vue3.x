@@ -15,13 +15,13 @@
         </div>
       </transition>
     </router-link>
-    <h2>Aside</h2>
+    <h2>{{ menus.toString() }}</h2>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { useLogoConfig } from "./hooks";
+import { useLogoConfig, useMenus } from "./hooks";
 
 export default defineComponent({
   name: "app-aside",
@@ -34,9 +34,12 @@ export default defineComponent({
   setup() {
     const { logo, companyName } = useLogoConfig();
 
+    const { menus } = useMenus();
+
     return {
       logo,
       companyName,
+      menus,
     };
   },
 });

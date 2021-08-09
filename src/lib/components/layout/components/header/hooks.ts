@@ -10,6 +10,10 @@ export function userModules() {
 
   const onActiveModuleChange = (id: string) => {
     activeId.value = id;
+    store.commit(
+      "SET_ACTIVE_MODULE",
+      modules.find((item) => item.id === id)?.children || []
+    );
   };
 
   return {

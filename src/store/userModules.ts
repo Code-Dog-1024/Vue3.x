@@ -3,6 +3,7 @@ import $http from "@/lib/axios";
 import $api from "@/api";
 import { ListResponeseData } from "@/@types/basic.d";
 import { RootState } from "./custom-vuex";
+import { userModules as mockData } from "@/mock/index";
 
 interface UserModule {
   /** 模块标识 */
@@ -21,12 +22,7 @@ export interface ModulesState {
 }
 
 const initState: ModulesState = {
-  userModules: [
-    {
-      id: "1",
-      name: "模块1",
-    },
-  ],
+  userModules: mockData,
   activeMenus: [],
 };
 

@@ -1,11 +1,8 @@
-import { computed, ComputedRef } from "vue";
-import { useUtils } from "@/hooks";
+import { computed } from "vue";
+import { useUtils, useStore } from "@/hooks";
 
 /** 获取站点相关信息 */
-export function useLogoConfig(): {
-  logo: ComputedRef<any>;
-  companyName: ComputedRef<any>;
-} {
+export function useLogoConfig() {
   const logo = computed(() => {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const img = require("@/assets/images/logo.jpg");
@@ -20,5 +17,16 @@ export function useLogoConfig(): {
   return {
     logo,
     companyName,
+  };
+}
+
+/** 获取menus */
+export function useMenus() {
+  const store = useStore();
+
+  const menus = computed(() => store.state.modules.activeMenus);
+
+  return {
+    menus,
   };
 }
