@@ -15,7 +15,24 @@
         </div>
       </transition>
     </router-link>
-    <h2>{{ menus.toString() }}</h2>
+
+    <el-menu unique-opened router :collapse="isFold">
+      <el-submenu v-for="menu in menus" :key="menu.id" :index="menu.id">
+        <template #title>
+          <i class="el-icon-location"></i>
+          <span>{{ menu.name }}</span>
+        </template>
+        <el-menu-item
+          v-for="child in menu.children"
+          :key="child.id"
+          :index="child.id"
+          :route="child.route"
+          class="app-aside-text"
+        >
+          {{ child.name }}
+        </el-menu-item>
+      </el-submenu>
+    </el-menu>
   </div>
 </template>
 
@@ -41,6 +58,9 @@ export default defineComponent({
       companyName,
       menus,
     };
+  },
+  mounted() {
+    console.log(this.menus);
   },
 });
 </script>
@@ -72,6 +92,10 @@ export default defineComponent({
     &-img {
       height: $logoHeight;
     }
+  }
+
+  &-text {
+    text-indent: 2em;
   }
 }
 </style>

@@ -10,6 +10,10 @@ interface UserModule {
   id: string;
   /** 模块名 */
   name: string;
+  /** 模块图标 */
+  icon?: string;
+  /** 模块路由 */
+  route?: string;
   /** 子模块列表 */
   children?: UserModule[] | null;
 }
@@ -19,11 +23,14 @@ export interface ModulesState {
   userModules: UserModule[];
   /** 当前访问模块的子模块列表 */
   activeMenus: UserModule[];
+  /** 用户可访问路由集合 */
+  userRoutes: Set<string>;
 }
 
 const initState: ModulesState = {
   userModules: mockData,
   activeMenus: [],
+  userRoutes: new Set(),
 };
 
 const userModules: Module<ModulesState, RootState> = {
@@ -37,6 +44,17 @@ const userModules: Module<ModulesState, RootState> = {
     /** 设置用户可访问模块列表 */
     SET_USER_MODULES(state: ModulesState, modules: UserModule[]): void {
       state.userModules = modules;
+      const fn = (m: UserModule[]) => {
+        m.forEach((i) => {
+          if (i.route) {
+            state.userRoutes.add(i.route);
+          }
+          if (i.children && i.children.length) {
+            fn(i.children);
+          }
+        });
+      };
+      fn(modules);
     },
     /** 设置用户当前访问模块的子模块列表 */
     SET_ACTIVE_MODULE(state: ModulesState, menus: UserModule[]): void {
