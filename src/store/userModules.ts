@@ -1,8 +1,7 @@
 import { ActionContext, Module } from "vuex";
 import $http from "@/lib/axios";
 import $api from "@/api";
-import { ListResponeseData } from "@/@types/basic.d";
-import { RootState } from "./custom-vuex";
+import { Dictionary, ListResponeseData } from "@/@types/basic.d";
 import { userModules as mockData } from "@/mock/index";
 
 interface UserModule {
@@ -33,16 +32,16 @@ const initState: ModulesState = {
   userRoutes: new Set(),
 };
 
-const userModules: Module<ModulesState, RootState> = {
+const userModules: Module<ModulesState, Dictionary> = {
   state: initState,
   mutations: {
     /** 初始化用户可访问模块配置 */
-    INIT_USER_MODULES(state: ModulesState): void {
+    INIT_USER_MODULES(state): void {
       state.userModules = [];
       state.activeMenus = [];
     },
     /** 设置用户可访问模块列表 */
-    SET_USER_MODULES(state: ModulesState, modules: UserModule[]): void {
+    SET_USER_MODULES(state, modules: UserModule[]): void {
       state.userModules = modules;
       const fn = (m: UserModule[]) => {
         m.forEach((i) => {
@@ -57,7 +56,7 @@ const userModules: Module<ModulesState, RootState> = {
       fn(modules);
     },
     /** 设置用户当前访问模块的子模块列表 */
-    SET_ACTIVE_MODULE(state: ModulesState, menus: UserModule[]): void {
+    SET_ACTIVE_MODULE(state, menus: UserModule[]): void {
       state.activeMenus = menus;
     },
   },
@@ -85,10 +84,10 @@ const userModules: Module<ModulesState, RootState> = {
     },
   },
   getters: {
-    userModules(state: ModulesState): UserModule[] {
+    userModules(state): UserModule[] {
       return state.userModules;
     },
-    activeMenus(state: ModulesState): UserModule[] {
+    activeMenus(state): UserModule[] {
       return state.activeMenus;
     },
   },
