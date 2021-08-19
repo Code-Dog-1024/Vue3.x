@@ -1,14 +1,14 @@
-import { ComponentInternalInstance, getCurrentInstance } from "vue";
+import { ComponentInternalInstance, getCurrentInstance } from 'vue';
 
-import { Utils } from "@/lib/@types/custom-vue.d";
+import { Utils } from '@/lib/@types/custom-vue.d';
 
-import { Http } from "@/lib/axios";
+import { Http } from '@/lib/axios';
 
-import { Api } from "@/@types/custom-vue.d";
+import { Api } from '@/@types/custom-vue.d';
 
-import { Store, useStore as useBasicStore } from "vuex";
-import { key } from "@/store";
-import { StoreState } from "@/store/index";
+import { Store, useStore as useBasicStore } from 'vuex';
+import { key } from '@/store';
+import { StoreState } from '@/store/index';
 
 /** 仅在setup中可以使用 */
 export function useUtils(): Utils {

@@ -1,7 +1,7 @@
 <template>
   <div class="app-header flex-ac bg-primary">
     <el-button type="primary" @click="changeFoldStatus">
-      {{ isAsideFold ? "点我展开aside" : "点我折叠aside" }}
+      {{ isAsideFold ? '点我展开aside' : '点我折叠aside' }}
     </el-button>
     <div
       class="app-header-module flex-jc-ac"
@@ -16,21 +16,21 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from "vue";
-import { userModules } from "./hooks";
+import { defineComponent, onMounted } from 'vue';
+import { userModules } from './hooks';
 
 export default defineComponent({
-  name: "app-header",
+  name: 'app-header',
   props: {
     isAsideFold: {
       type: Boolean,
       required: true,
     },
   },
-  emits: ["update:isAsideFold"],
+  emits: ['update:isAsideFold'],
   setup(props, { emit }) {
     const changeFoldStatus = () => {
-      emit("update:isAsideFold", !props.isAsideFold);
+      emit('update:isAsideFold', !props.isAsideFold);
     };
 
     const { modules, activeId, onActiveModuleChange } = userModules();

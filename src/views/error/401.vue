@@ -1,12 +1,12 @@
 <template>
-  <div class="footer"></div>
+  <h2>page 401</h2>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'app-footer',
+  name: '401',
 });
 </script>
 

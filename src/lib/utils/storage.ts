@@ -8,7 +8,7 @@ class Session {
 
   constructor() {
     this.cache = window.sessionStorage;
-    this.prifix = "lz_";
+    this.prifix = 'lz_';
   }
 
   set(key: string, value: any) {

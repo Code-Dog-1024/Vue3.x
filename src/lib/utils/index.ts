@@ -1,6 +1,6 @@
-import * as common from "./common";
-import * as handleData from "./handleData";
-import _Storage from "./storage";
+import * as common from './common';
+import * as handleData from './handleData';
+import _Storage from './storage';
 
 export default {
   ...common,

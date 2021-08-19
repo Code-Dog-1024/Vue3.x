@@ -25,8 +25,8 @@
         <el-menu-item
           v-for="child in menu.children"
           :key="child.id"
-          :index="child.id"
-          :route="child.route"
+          :index="child.route"
+          :disabled="!child.route"
           class="app-aside-text"
         >
           {{ child.name }}
@@ -37,11 +37,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import { useLogoConfig, useMenus } from "./hooks";
+import { defineComponent } from 'vue';
+import { useLogoConfig, useMenus } from './hooks';
 
 export default defineComponent({
-  name: "app-aside",
+  name: 'app-aside',
   props: {
     isFold: {
       type: Boolean,
@@ -58,9 +58,6 @@ export default defineComponent({
       companyName,
       menus,
     };
-  },
-  mounted() {
-    console.log(this.menus);
   },
 });
 </script>

@@ -1,9 +1,7 @@
-import { ActionContext, Module } from "vuex";
-import $http from "@/lib/axios";
-import $api from "@/api";
-import { Dictionary, ListResponeseData } from "@/@types/basic.d";
-import { userModules as mockData } from "@/mock/index";
-
+import { ActionContext, Module } from 'vuex';
+import $http from '@/lib/axios';
+import $api from '@/api';
+import { Dictionary, ListResponeseData } from '@/@types/basic.d';
 interface UserModule {
   /** 模块标识 */
   id: string;
@@ -27,7 +25,7 @@ export interface ModulesState {
 }
 
 const initState: ModulesState = {
-  userModules: mockData,
+  userModules: [],
   activeMenus: [],
   userRoutes: new Set(),
 };
@@ -62,16 +60,14 @@ const userModules: Module<ModulesState, Dictionary> = {
   },
   actions: {
     /** 获取用户可访问模块列表 */
-    GET_USER_MODULES(
-      context: ActionContext<ModulesState, any>
-    ): Promise<UserModule[]> {
+    GET_USER_MODULES(context: ActionContext<ModulesState, any>): Promise<UserModule[]> {
       return new Promise((resolve, reject) => {
         try {
           $http.post($api.common.modules).then((res) => {
             const { data } = res;
             const { content } = data as ListResponeseData<UserModule>;
             if (content.length) {
-              context.commit("SET_USER_MODULES", content);
+              context.commit('SET_USER_MODULES', content);
               resolve(content);
             } else {
               reject();

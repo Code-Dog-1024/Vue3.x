@@ -1,24 +1,13 @@
-import axios, {
-  AxiosInstance,
-  AxiosRequestConfig,
-  AxiosResponse,
-  AxiosError,
-} from "axios";
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
 
-import { ElMessage as message } from "element-plus";
+import { ElMessage as message } from 'element-plus';
 
 export class Http {
   private axios: AxiosInstance;
 
   private useInterceptors() {
-    this.axios.interceptors.request.use(
-      this.requestInterceptors,
-      this.handleRequestError
-    );
-    this.axios.interceptors.response.use(
-      this.handleResponseSuccess,
-      this.handleResponseFaild
-    );
+    this.axios.interceptors.request.use(this.requestInterceptors, this.handleRequestError);
+    this.axios.interceptors.response.use(this.handleResponseSuccess, this.handleResponseFaild);
   }
 
   private requestInterceptors(config: AxiosRequestConfig): AxiosRequestConfig {
@@ -28,19 +17,19 @@ export class Http {
   }
 
   private handleRequestError(error: any): any {
-    message({ message: "请求失败！", type: "error" });
+    message({ message: '请求失败！', type: 'error' });
     return error;
   }
 
   private handleResponseSuccess(res: AxiosResponse): Promise<AxiosResponse> {
     return new Promise((resolve, reject) => {
       const { errcode, errmsg } = res.data;
-      if (errcode !== "0000") {
-        message({ message: errmsg || "请求失败！", type: "error" });
+      if (errcode !== '0000') {
+        message({ message: errmsg || '请求失败！', type: 'error' });
         reject(res.data);
         return;
       }
-      message({ message: "请求成功！", type: "success" });
+      message({ message: '请求成功！', type: 'success' });
       resolve(res.data);
     });
   }
@@ -61,7 +50,7 @@ export class Http {
   constructor() {
     this.axios = axios.create({
       timeout: 20000,
-      headers: { "X-Requested-With": "XMLHttpRequest" },
+      headers: { 'X-Requested-With': 'XMLHttpRequest' },
     });
     this.useInterceptors();
   }

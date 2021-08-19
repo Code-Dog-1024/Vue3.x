@@ -1,11 +1,11 @@
-import { Dictionary } from "@/@types/basic.d";
+import { Dictionary } from '@/@types/basic.d';
 
 const types: Dictionary<string> = {};
 
-"Number String Boolean Null Undefined Object Array Function Date RegExp Error"
-  .split(" ")
+'Number String Boolean Null Undefined Object Array Function Date RegExp Error'
+  .split(' ')
   .forEach((item) => {
-    types["[object " + item + "]"] = item.toLowerCase();
+    types['[object ' + item + ']'] = item.toLowerCase();
   });
 
 /**
@@ -21,9 +21,9 @@ const types: Dictionary<string> = {};
  * @returns {string} 表示数据类型的字符串
  */
 export const type = (obj: unknown): string => {
-  if (obj === null) return "null";
-  return typeof obj === "object"
-    ? types[Object.prototype.toString.call(obj)] || "object"
+  if (obj === null) return 'null';
+  return typeof obj === 'object'
+    ? types[Object.prototype.toString.call(obj)] || 'object'
     : typeof obj;
 };
 
@@ -35,7 +35,7 @@ export const type = (obj: unknown): string => {
  */
 export const isArray = (obj: unknown): boolean => {
   if (Array.isArray) return Array.isArray(obj);
-  return type(obj) === "array";
+  return type(obj) === 'array';
 };
 
 /**
@@ -45,7 +45,7 @@ export const isArray = (obj: unknown): boolean => {
  * @returns {boolean} true | false
  */
 export const isObject = (obj: unknown): boolean => {
-  return type(obj) === "object";
+  return type(obj) === 'object';
 };
 
 /**
@@ -56,12 +56,11 @@ export const isObject = (obj: unknown): boolean => {
  */
 export const clone = <T>(source: T): T => {
   let target: any;
-  if (typeof source === "object") {
+  if (typeof source === 'object') {
     target = isArray(source) ? [] : {};
     for (const key in source) {
       if (Object.prototype.hasOwnProperty.call(source, key)) {
-        target[key] =
-          typeof source[key] === "object" ? clone(source[key]) : source[key];
+        target[key] = typeof source[key] === 'object' ? clone(source[key]) : source[key];
       }
     }
   } else {

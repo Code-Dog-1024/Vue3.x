@@ -1,9 +1,9 @@
-import { App } from "vue";
+import { App } from 'vue';
 
-import AppLayout from "./components/layout/index.vue";
+import AppLayout from './components/layout/index.vue';
 
-import utils from "./utils";
-import axios from "./axios";
+import utils from './utils';
+import axios from './axios';
 
 const components = [
   {

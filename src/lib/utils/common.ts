@@ -1,4 +1,4 @@
-import { Foo } from "@/@types/basic.d";
+import { Foo } from '@/@types/basic.d';
 
 /**
  * 数字添加分隔符并保留两位小数
@@ -13,28 +13,28 @@ import { Foo } from "@/@types/basic.d";
  */
 export const formatNumber = (value: number | string, tofix = 2): string => {
   value = parseFloat(String(value));
-  const arr = String(value).split(".");
-  const intPartArr = arr[0].split("").reverse();
-  let floatPart = arr[1] || "";
+  const arr = String(value).split('.');
+  const intPartArr = arr[0].split('').reverse();
+  let floatPart = arr[1] || '';
 
   if (intPartArr.length > 3) {
     const commaNum = Math.floor(intPartArr.length / 3);
     for (let index = 0; index < commaNum; index++) {
-      intPartArr.splice(4 * index + 3, 0, ",");
+      intPartArr.splice(4 * index + 3, 0, ',');
     }
   }
   intPartArr.reverse();
-  if (intPartArr[0] === ",") {
+  if (intPartArr[0] === ',') {
     intPartArr.splice(0, 1);
   }
-  const intPart = intPartArr.join("");
+  const intPart = intPartArr.join('');
 
   if (floatPart) {
-    floatPart = Number("0." + floatPart)
+    floatPart = Number('0.' + floatPart)
       .toFixed(tofix)
-      .split(".")[1];
+      .split('.')[1];
   } else {
-    floatPart = (0).toFixed(tofix).split(".")[1];
+    floatPart = (0).toFixed(tofix).split('.')[1];
   }
 
   return `${intPart}.${floatPart}`;

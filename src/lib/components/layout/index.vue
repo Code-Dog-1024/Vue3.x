@@ -17,13 +17,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
-import AppHeader from "./components/header/index.vue";
-import AppAside from "./components/aside/index.vue";
-import AppFooter from "./components/footer.vue";
+import { defineComponent, ref } from 'vue';
+import AppHeader from './components/header/index.vue';
+import AppAside from './components/aside/index.vue';
+import AppFooter from './components/footer.vue';
 
 export default defineComponent({
-  name: "app-layout",
+  name: 'app-layout',
   components: {
     AppHeader,
     AppAside,

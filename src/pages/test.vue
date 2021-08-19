@@ -5,11 +5,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
-import { useUtils } from "@/hooks";
+import { defineComponent, ref } from 'vue';
+import { useUtils } from '@/hooks';
 
 export default defineComponent({
-  name: "test",
+  name: 'test',
   props: {
     name: {
       type: String,
@@ -17,7 +17,7 @@ export default defineComponent({
     },
   },
   setup() {
-    const num = ref("1123");
+    const num = ref('1123');
     num.value = useUtils().formatNumber(num.value);
     return {
       num,
