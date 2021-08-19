@@ -4,7 +4,7 @@ import { Utils } from '@/lib/@types/custom-vue.d';
 
 import { Http } from '@/lib/axios';
 
-import { Api } from '@/@types/custom-vue.d';
+import { $api } from '@/@types/custom-vue.d';
 
 import { Store, useStore as useBasicStore } from 'vuex';
 import { key } from '@/store';
@@ -25,12 +25,13 @@ export function useHttp(): Http {
 }
 
 /** 仅在setup中可以使用 */
-export function useApi(): Api {
+export function useApi(): $api {
   const { appContext } = getCurrentInstance() as ComponentInternalInstance;
   const globalProperties = appContext.config.globalProperties;
   return globalProperties.$api;
 }
 
+/** 仅在setup中可以使用 */
 export function useStore(): Store<StoreState> {
   return useBasicStore<StoreState>(key);
 }

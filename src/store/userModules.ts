@@ -22,12 +22,15 @@ export interface ModulesState {
   activeMenus: UserModule[];
   /** 用户可访问路由集合 */
   userRoutes: Set<string>;
+  /** 已动态加载的模块标识集合 */
+  loadedModules: Set<string>;
 }
 
 const initState: ModulesState = {
   userModules: [],
   activeMenus: [],
   userRoutes: new Set(),
+  loadedModules: new Set(),
 };
 
 const userModules: Module<ModulesState, Dictionary> = {
