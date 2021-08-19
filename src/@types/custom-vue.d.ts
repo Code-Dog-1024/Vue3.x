@@ -1,7 +1,7 @@
 import api from "@/api";
 
 import { Store } from "vuex";
-import { StoreState } from "@/store/custom-vuex.d";
+import { StoreState } from "@/store/index";
 
 type Api = typeof api;
 

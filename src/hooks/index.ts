@@ -8,7 +8,7 @@ import { Api } from "@/@types/custom-vue.d";
 
 import { Store, useStore as useBasicStore } from "vuex";
 import { key } from "@/store";
-import { StoreState } from "@/store/custom-vuex.d";
+import { StoreState } from "@/store/index";
 
 /** 仅在setup中可以使用 */
 export function useUtils(): Utils {

@@ -24,7 +24,7 @@ export function useLogoConfig() {
 export function useMenus() {
   const store = useStore();
 
-  const menus = computed(() => store.state.modules.activeMenus);
+  const menus = computed(() => store.state.userModules.activeMenus);
 
   return {
     menus,

@@ -6,7 +6,7 @@ export function userModules() {
   const store = useStore();
 
   const activeId = ref("");
-  const modules = store.state.modules.userModules;
+  const modules = store.state.userModules.userModules;
 
   const onActiveModuleChange = (id: string) => {
     activeId.value = id;
