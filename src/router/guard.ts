@@ -12,6 +12,7 @@ export function beforeEach(to: RouteLocationNormalized): RouteLocationRaw | bool
   const isLoginPath = path === '/login';
   const isErrorPath = path === '/401' || path === '/404';
   const isRootPath = path === '/';
+  const belongModule = path.split('/')[1];
 
   /** 未登录跳转至登录页 */
   if (!isLogin && !isLoginPath) return '/login';
