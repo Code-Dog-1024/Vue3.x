@@ -1,6 +1,7 @@
-import { ActionContext, Module } from 'vuex';
+import { Module } from 'vuex';
 import $http from '@/lib/axios';
-import $api from '@/api';
+import $api from '@/lib/api';
+import $utils from '@/lib/utils';
 import { Dictionary, ListResponeseData } from '@/@types/basic.d';
 interface UserModule {
   /** 模块标识 */
@@ -60,7 +61,7 @@ const userModules: Module<ModulesState, Dictionary> = {
   },
   actions: {
     /** 获取用户可访问模块列表 */
-    GET_USER_MODULES(context: ActionContext<ModulesState, any>): Promise<UserModule[]> {
+    GET_USER_MODULES(context): Promise<UserModule[]> {
       return new Promise((resolve, reject) => {
         try {
           $http.post($api.common.modules).then((res) => {
@@ -68,6 +69,15 @@ const userModules: Module<ModulesState, Dictionary> = {
             const { content } = data as ListResponeseData<UserModule>;
             if (content.length) {
               context.commit('SET_USER_MODULES', content);
+              const activeModuleID = $utils._Storage.get('ActiveModuleID');
+              let activeModule;
+              if (activeModuleID) {
+                activeModule = content.filter((v) => v.id === activeModuleID)[0];
+              } else {
+                $utils._Storage.set('ActiveModuleID', content[0].id);
+                activeModule = content[0];
+              }
+              context.commit('SET_ACTIVE_MODULE', activeModule);
               resolve(content);
             } else {
               reject();
@@ -77,6 +87,12 @@ const userModules: Module<ModulesState, Dictionary> = {
           reject(error);
         }
       });
+    },
+    /** 获取用户当前访问模块的子模块列表 */
+    GET_ACTIVE_MODULE(context, id: string): void {
+      const modules = context.state.userModules;
+      const module = modules.filter((v) => v.id === id);
+      context.commit('SET_ACTIVE_MODULE', module);
     },
   },
   getters: {

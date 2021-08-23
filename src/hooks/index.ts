@@ -4,7 +4,7 @@ import { Utils } from '@/lib/@types/custom-vue.d';
 
 import { Http } from '@/lib/axios';
 
-import { $api } from '@/@types/custom-vue.d';
+import { $api } from '@/lib/@types/custom-vue.d';
 
 import { Store, useStore as useBasicStore } from 'vuex';
 import { key } from '@/store';

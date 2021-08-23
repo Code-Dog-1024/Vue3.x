@@ -33,6 +33,11 @@ const routes: RouteRecordRaw[] = [
       },
     ],
   },
+  {
+    path: '/login',
+    name: '登录',
+    component: import(/* webpackChunkName: "login" */ '@/views/login/index.vue'),
+  },
   ...errorRoutes,
 ];
 

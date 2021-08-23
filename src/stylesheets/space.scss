@@ -23,39 +23,20 @@
   }
 }
 
-@each $direction in l, r, t, b {
+$direction: (
+  top: t,
+  left: l,
+  right: r,
+  bottom: b,
+);
+
+@each $key, $val in $direction {
   @for $i from 1 to 11 {
-    @if $direction == "l" {
-      .m#{$direction}-#{$i * 5} {
-        margin-left: $i * 5px;
-      }
-      .p#{$direction}-#{$i * 5} {
-        padding-left: $i * 5px;
-      }
+    .m#{$val}-#{$i * 5} {
+      margin-#{$key}: $i * 5px;
     }
-    @if $direction == "r" {
-      .m#{$direction}-#{$i * 5} {
-        margin-right: $i * 5px;
-      }
-      .p#{$direction}-#{$i * 5} {
-        padding-right: $i * 5px;
-      }
-    }
-    @if $direction == "t" {
-      .m#{$direction}-#{$i * 5} {
-        margin-top: $i * 5px;
-      }
-      .p#{$direction}-#{$i * 5} {
-        padding-top: $i * 5px;
-      }
-    }
-    @if $direction == "b" {
-      .m#{$direction}-#{$i * 5} {
-        margin-bottom: $i * 5px;
-      }
-      .p#{$direction}-#{$i * 5} {
-        padding-bottom: $i * 5px;
-      }
+    .p#{$val}-#{$i * 5} {
+      padding-#{$key}: $i * 5px;
     }
   }
 }
