@@ -18,6 +18,8 @@ export async function beforeEach(to: RouteLocationNormalized): Promise<RouteLoca
   /** 未登录跳转至登录页 */
   if (!isLogin && !isLoginPath) return '/login';
 
+  await store.dispatch('GET_USER_MODULES');
+
   /** 直接进入 */
   if (isLoginPath || isErrorPath || isRootPath) return true;
 
@@ -26,7 +28,9 @@ export async function beforeEach(to: RouteLocationNormalized): Promise<RouteLoca
     await register.set(belongModule);
   }
 
-  if (userRoutes.has(path)) return true;
+  if (userRoutes.has(path)) {
+    return true;
+  }
 
   return '/404';
 }

@@ -95,4 +95,8 @@ export default defineComponent({
     text-indent: 2em;
   }
 }
+
+.el-menu--collapse {
+  width: $asideOffWidth;
+}
 </style>

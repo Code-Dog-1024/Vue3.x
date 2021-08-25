@@ -3,6 +3,7 @@ import $http from '@/lib/axios';
 import $api from '@/lib/api';
 import $utils from '@/lib/utils';
 import { Dictionary, ListResponeseData } from '@/@types/basic.d';
+
 interface UserModule {
   /** 模块标识 */
   id: string;
@@ -19,6 +20,8 @@ interface UserModule {
 export interface ModulesState {
   /** 当前用户拥有访问权限的模块列表 */
   userModules: UserModule[];
+  /** 当前访问模块的模块标识 */
+  activeModuleID: string;
   /** 当前访问模块的子模块列表 */
   activeMenus: UserModule[];
   /** 用户可访问路由集合 */
@@ -27,6 +30,7 @@ export interface ModulesState {
 
 const initState: ModulesState = {
   userModules: [],
+  activeModuleID: '',
   activeMenus: [],
   userRoutes: new Set(),
 };
@@ -54,9 +58,11 @@ const userModules: Module<ModulesState, Dictionary> = {
       };
       fn(modules);
     },
-    /** 设置用户当前访问模块的子模块列表 */
-    SET_ACTIVE_MODULE(state, menus: UserModule[]): void {
-      state.activeMenus = menus;
+    /** 设置用户当前访问模块 */
+    SET_ACTIVE_MODULE(state, module: UserModule): void {
+      $utils._Storage.set('ActiveModuleID', module.id);
+      state.activeModuleID = module.id;
+      state.activeMenus = module.children || [];
     },
   },
   actions: {
@@ -70,13 +76,9 @@ const userModules: Module<ModulesState, Dictionary> = {
             if (content.length) {
               context.commit('SET_USER_MODULES', content);
               const activeModuleID = $utils._Storage.get('ActiveModuleID');
-              let activeModule;
-              if (activeModuleID) {
-                activeModule = content.filter((v) => v.id === activeModuleID)[0];
-              } else {
-                $utils._Storage.set('ActiveModuleID', content[0].id);
-                activeModule = content[0];
-              }
+              const activeModule = activeModuleID
+                ? content.filter((v) => v.id === activeModuleID)[0]
+                : content[0];
               context.commit('SET_ACTIVE_MODULE', activeModule);
               resolve(content);
             } else {
@@ -87,12 +89,6 @@ const userModules: Module<ModulesState, Dictionary> = {
           reject(error);
         }
       });
-    },
-    /** 获取用户当前访问模块的子模块列表 */
-    GET_ACTIVE_MODULE(context, id: string): void {
-      const modules = context.state.userModules;
-      const module = modules.filter((v) => v.id === id);
-      context.commit('SET_ACTIVE_MODULE', module);
     },
   },
   getters: {

@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from 'vue';
+import { defineComponent } from 'vue';
 import { userModules } from './hooks';
 
 export default defineComponent({
@@ -34,10 +34,6 @@ export default defineComponent({
     };
 
     const { modules, activeId, onActiveModuleChange } = userModules();
-
-    onMounted(() => {
-      onActiveModuleChange(modules[0].id);
-    });
 
     return {
       changeFoldStatus,
