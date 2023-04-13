@@ -42,7 +42,7 @@ class Register {
         // eslint-disable-next-line no-console
         console.log(
           `%c${name}模块已加载`,
-          'color:#fff;background:#40b883;border-radius:5px;padding:2px 5px;'
+          'color:#fff;background:#40b883;border-radius:5px;padding:2px 5px;',
         );
       };
       script.onerror = () => {
