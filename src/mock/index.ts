@@ -1,47 +1,54 @@
 export const userModules = [
   {
-    id: '1',
+    id: 'module1',
     name: '模块1',
+    route: '/module1',
     children: [
       {
-        id: '1-1',
-        name: '模块1-1',
-        route: '/',
+        id: 'module1_menu1',
+        name: '菜单1',
+        route: '/module1/menu1',
         children: [
           {
-            id: '1-1-1',
-            name: '模块1-1-1',
-            route: '/test',
+            id: 'module1_menu1-1',
+            name: '菜单1-1',
+            route: '/module1/menu1/menu1-1',
           },
           {
-            id: '1-1-2',
-            name: '模块1-1-2',
+            id: 'module1_menu1-2',
+            name: '菜单1-2',
+            route: '/module1/menu1/menu1-2',
           },
         ],
       },
       {
-        id: '1-2',
-        name: '模块1-2',
+        id: 'module1_menu2',
+        name: '菜单2',
+        route: '/module1/menu2',
         children: [
           {
-            id: '1-2-1',
-            name: '模块1-2-1',
+            id: 'module1_menu2-1',
+            name: 'menu2-1',
+            route: '/module1/menu2/menu2-1',
           },
         ],
       },
     ],
   },
   {
-    id: '2',
+    id: 'module2',
     name: '模块2',
+    route: '/module2',
     children: [
       {
-        id: '2-1',
-        name: '模块2-1',
+        id: 'module2_menu1',
+        name: '菜单1',
+        route: '/module2/menu1',
       },
       {
-        id: '2-2',
-        name: '模块2-2',
+        id: 'module2_menu2',
+        name: '菜单2',
+        route: '/module2/menu2',
       },
     ],
   },
